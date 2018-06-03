@@ -12,9 +12,9 @@ base = {1: datetime.datetime(2018, 6, 2, 22, 30, 00),
 source = [{"id" :1,
            "latitude": 37.415833,
            "longitude": 127.1016,
-           "control": [{"t": 38, "now": 0, "red": False, "yellow": False, "green": False, "left": True},
-                       {"t": 16, "now": 0, "red": True, "yellow": False, "green": False, "left": False},
-                       {"t": 146, "now": 0, "red": False, "yellow": False, "green": True, "left": False},
+           "control": [{"t": 41, "now": 0, "red": False, "yellow": False, "green": False, "left": True},
+                       {"t": 15, "now": 0, "red": True, "yellow": False, "green": False, "left": False},
+                       {"t": 144, "now": 0, "red": False, "yellow": False, "green": True, "left": False},
                        {"t":  0, "now": 0, "red": True, "yellow": True, "green": False, "left": False}]},
           {"id": 2,
            "latitude": 37.41974,
@@ -71,14 +71,14 @@ while True:
     result = []
     nowDate = datetime.datetime.now()
     for item in source:
-        send_object = process(item, 5)
+        send_object = process(item, 2)
         result.append(send_object)
 
     data = json.dumps(result)
     print(data)
     a = r.post(url + "/traffic-control/control", json=result)
     nowDate2 = datetime.datetime.now()
-    gap = datetime.timedelta(seconds=5) - (nowDate2 - nowDate)
+    gap = datetime.timedelta(seconds=2) - (nowDate2 - nowDate)
     print(gap)
     # print(a.content)
     # print("SEND!")
